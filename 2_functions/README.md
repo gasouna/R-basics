@@ -31,6 +31,7 @@ Uma vez definida a função podemos chamar e executar o bloco de códigos contid
 
 É importante ressaltar que caso a última linha de código do corpo da função não retorne nenhum valor, a função também não retornará nada.
 Outro ponto em que é necessário ter atenção é na definição dos argumentos da nossa função. Podemos criar quantos nomes forem necessários separando-os por vírgula e inclusive atribuir valores padrão para eles dentro da definição da função.
+>O RStudio tem uma ferramenta que ajuda a construir funções. Para usá-la, basta selecionarmos o trecho de código no script R que queremos transformar em função. Após isso basta clicarmos em ```Code > Extract Function``` na barra de menu. Na sequência o RStudio irá pedir por um nome para a função e então encapsular o código dentro de uma chamada de função. Além disso ele irá escanear o código a procura de variáveis indefinidas e transformá-las em argumentos.
 
 ---
 ### Exemplo
