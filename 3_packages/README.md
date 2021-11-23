@@ -1,4 +1,4 @@
-# Pacotes e Páginas de Ajuda
+# Pacotes
 ---
 Muitas das funções mais interessantes do R não estão disponíveis quando iniciamos uma sessão no R, mas sim em pacotes que podem ser instalados pelos usuários. Esses pacotes são semelhantes às bibliotecas do C, C++ e JavaScript ou aos pacotes do Python. Ou seja, são conjuntos de funções úteis, arquivos de ajuda e data sets que podem ser reutilizados nos códigos R uma vez que são carregados dentro de uma sessão. Normalmente o conteúdo desses pacotes do R está relacionado a um tipo de tarefa que o pacote ajuda a resolver.
 >Todos os pacotes do R são hospedados no site http://cran.r-project.org, o mesmo que hospeda o R.
