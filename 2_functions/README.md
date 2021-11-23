@@ -33,6 +33,24 @@ Uma vez definida a função podemos chamar e executar o bloco de códigos contid
 Outro ponto em que é necessário ter atenção é na definição dos argumentos da nossa função. Podemos criar quantos nomes forem necessários separando-os por vírgula e inclusive atribuir valores padrão para eles dentro da definição da função.
 >O RStudio tem uma ferramenta que ajuda a construir funções. Para usá-la, basta selecionarmos o trecho de código no script R que queremos transformar em função. Após isso basta clicarmos em ```Code > Extract Function``` na barra de menu. Na sequência o RStudio irá pedir por um nome para a função e então encapsular o código dentro de uma chamada de função. Além disso ele irá escanear o código a procura de variáveis indefinidas e transformá-las em argumentos.
 
+### Páginas de ajuda
+Cada função do R vem com uma página de ajuda, que pode ser acessada digitando o nome da função depois de um ponto de interrogação. Por exemplo:
+```R
+?sample
+```
+>Caso não lembremos o nome de uma função que desejamos procurar a página de ajuda podemos procurar por palavras-chave. Para fazer isso nós precisamos digitar dois pontos de interrogação seguidos pela palavra-chave. O R responderá com uma lista de links de páginas de ajuda relacionadas.
+
+As páginas de exemplo contêm informações úteis sobre o que cada função faz, além de exemplos de como utilizá-la no seu código. Normalmente encontramos os seguintes tópicos:
+* Descrição: Um resumo do que a função faz.
+* Uso: Um exemplo de como iríamos utilizar a função. Cada argumento aparece na ordem que o R espera que seja fornecido.
+* Argumentos: Uma lista de cada argumento da função, que tipo de informação o R espera para o argumento e o que a função fará com aquela informação.
+* Detalhes: Uma descrição mais aprofundada sobre a função e sobre como ela opera.
+* Value: Uma descrição sobre o que a função retorna quando é executada.
+* Veja também (__See also__): Uma lista de funções relacionadas.
+* Exemplos: Código de exemplo que usa a função e é garantido que funciona. Essa parte da página de ajuda geralmente mostra algumas maneiras diferentes de utilizá-la. Isso ajuda a dar uma ideia do que a função é capaz de fazer.
+
+>Se uma função vier dentro de um pacote do R ele não será capaz de encontrar a página de ajuda dele, a menos que o pacote esteja carregado.
+
 ---
 ### Exemplo
 No código de exemplo dessa seção criamos uma função chamada ```roll2```, que retorna o valor da soma de uma simulação do lançamento de dois dados numerados de 1 a 6 (por padrão).
