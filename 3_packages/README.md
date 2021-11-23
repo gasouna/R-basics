@@ -29,3 +29,13 @@ Esse comando fará com que todas as funções, arquivos e data sets do pacote fi
 library()
 ```
 >O comando ```library()``` também mostra o caminho do atual diretório de bibliotecas do R, que é a pasta que contém os seus pacotes do R.
+
+---
+### Exemplo
+No código de exemplo desta seção utilizaremos o pacote ```ggplot2``` para plotar um histograma dos resultados da simulação dos dados do exemplo da seção [2_functions](https://github.com/gasouna/R-basics/tree/master/2_functions "Funções"). Porém, desta vez faremos com que os nossos dados estejam 'viciados', alterando a distribuição de probabilidades para que o número 6 tenha maior chance de ser sorteado:
+>Observações:
+> 1 - Para utilizar as funções do pacote ```ggplot2``` é necessário fazer a instalação no computador e, posteriormente, o carregamento dele na sessão do R. Para a instalação utilizamos o comando ```install.packages("ggplot2")```. Depois, utilizamos o comando ```library(ggplot2)``` para carregá-lo.
+> 2 - A função ```qplot``` do pacote instalado é o que precisamos para criar nosso gráfico. No caso de um histograma, basta passarmos um único vetor como argumento.
+> 3 - Para gerarmos um histograma fiel a distribuição de probabilidades que definimos precisamos de execuções suficientes. Este trabalho é executado pela função ```replicate```. Ela é uma função que já é padrão do R e nos fornece uma maneira simples de repetir um determinado comando muitas vezes. A sintaxe dessa função é ```replicate(number of executions,command)```.
+> 4 - Ao passarmos um vetor para o argumento ```prob``` da função ```sample``` nós alteramos a probabilidade com que cada elemento pode aparecer. Essa probabilidade é distribuída elemento a elemento das nossa amostra, ou seja, o primeiro elemento do vetor de amostra é relacionado ao primeiro elemento do vetor de probabilidades, e assim por diante.
+> 5 - A função ```c()``` concatena em um único vetor todos os valores separados por vírgula que são passados como argumento.
