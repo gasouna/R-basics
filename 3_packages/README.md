@@ -32,7 +32,7 @@ library()
 
 ---
 ### Exemplo
-No código de exemplo desta seção utilizaremos o pacote ```ggplot2``` para plotar um histograma dos resultados da simulação dos dados do exemplo da seção [2_functions](https://github.com/gasouna/R-basics/tree/master/2_functions "Funções"). Porém, desta vez faremos com que os nossos dados estejam 'viciados', alterando a distribuição de probabilidades para que o número 6 tenha maior chance de ser sorteado:
+No código de exemplo desta seção utilizaremos o pacote ```ggplot2``` para plotar um histograma dos resultados da simulação dos dados do exemplo da seção [2_functions](https://github.com/gasouna/R-basics/tree/master/2_functions#exemplo "Funções"). Porém, desta vez faremos com que os nossos dados estejam 'viciados', alterando a distribuição de probabilidades para que o número 6 tenha maior chance de ser sorteado:
 >Observações:
 > 1 - Para utilizar as funções do pacote ```ggplot2``` é necessário fazer a instalação no computador e, posteriormente, o carregamento dele na sessão do R. Para a instalação utilizamos o comando ```install.packages("ggplot2")```. Depois, utilizamos o comando ```library(ggplot2)``` para carregá-lo.
 > 2 - A função ```qplot``` do pacote instalado é o que precisamos para criar nosso gráfico. No caso de um histograma, basta passarmos um único vetor como argumento.
