@@ -30,7 +30,7 @@ typeof(int)
 A diferença entre os números 5 e 5L é somente como o R os armazena na memória, na qual os inteiros são definidos com maior precisão.
 
 Ao criarmos os dois objetos dos exemplos acima, podemos verificar o seguinte resultado no _Environment panel_:
-![Numeric](0_objects/00_images/DataTypes_Numeric.png "Numeric")
+![Numeric](../00_images/DataTypes_Numeric.PNG "Numeric")
 
 >Para o R os dados numéricos podem tanto ser _doubles_ quanto _integers_.
 
@@ -58,7 +58,7 @@ typeof("Hello")
 ```
 Os elementos de um vetor de caracteres são chamados de _strings_. Elas podem conter não somente letras, mas combinações de letras, números e símbolos.
 Ao criarmos o vetor ```text``` do exemplo assim temos o seguinte resultado no _Environment panel_:
-![Character](0_objects/00_images/DataTypes_Character.png "Character")
+![Character](../00_images/DataTypes_Character.PNG "Character")
 
 Ao analisarmos o vetor criado usando a função ```str``` o R nos mostra que ele é do tipo _character_ (_chr_) e que tem dois elementos.
 
@@ -85,7 +85,7 @@ str(birthdayDate)
 >O parâmetro ```format``` faz com que o R entenda exatamente o formato em que o valor de data foi inserido, para evitar interpretações ambíguas derivadas das diferentes formas de escrever datas usadas em países diferentes.
 
 Podemos verificar o resultado dos comandos acima no _Environment panel_:
-![Dates](0_objects/00_images/DataTypes_Dates.png "Dates")
+![Dates](../00_images/DataTypes_Dates.PNG "Dates")
 
 ## Logicals
 O tipo _logical_ armazena valores ```TRUE``` ou ```FALSE```, que são a forma de dados Booleanos do R. Ele é muito útil, especialmente para fazer comparações.
@@ -102,7 +102,7 @@ typeof(F)
 [1] "logical"
 ```
 Vejamos o resultado da criação do vetor ```logic``` seguindo os comandos acima:
-![Logical](0_objects/00_images/DataTypes_Logical.png "Logical")
+![Logical](../00_images/DataTypes_Logical.PNG "Logical")
 
 ## Complex and Raw
 O tipo _complex_ armazena números complexos. Para criar um vetor complexo adicionamos uma componente imaginária para um número usando a letra 'i':
@@ -124,7 +124,7 @@ typeof(rawVector)
 [1] "raw"
 ```
 Seguem os resultados dos comandos acima no _Environment panel_:
-![Complex and Raw](0_objects/00_images/DataTypes_Complex_Raw.png "Complex and Raw")
+![Complex and Raw](../00_images/DataTypes_Complex_Raw.PNG "Complex and Raw")
 
 ---
 ## Mudando o tipo de dados

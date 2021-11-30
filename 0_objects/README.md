@@ -19,10 +19,10 @@ Por mais que estejam armazenados em memória, o R sobrescreverá qualquer inform
 ### Environment panel
 Quaisquer objetos que criamos são mantidos no ambiente global. No RStudio podemos visualizar os objetos no _environment panel_, localizado no canto superior direito da tela. Ele nos oferece dois tipos de visualização: _List_ ou _Grid_. 
 A visão do tipo _List_ deve ser algo do tipo:
-![List view](0_objects/00_images/EnvironmentPanel_ListView.png "List view")
+![List view](00_images/EnvironmentPanel_ListView.PNG "List view")
 
 Enquanto a visão do tipo _Grid_ é do tipo:
-![Grid view](0_objects/00_images/EnvironmentPanel_GridView.png "Grid view")
+![Grid view](00_images/EnvironmentPanel_GridView.PNG "Grid view")
 
 Podemos usar as duas formas, porém a visão do tipo _Grid_ apresenta mais informações sobre os objetos. Ao clicarmos em um objeto podemos ver as seguintes informações:
 1. Nome do objeto
