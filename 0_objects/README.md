@@ -16,7 +16,7 @@ Por mais que estejam armazenados em memória, o R sobrescreverá qualquer inform
 > Uma boa forma de evitar utilizar nomes repetidos é utilizando a função ```ls()```. Está função listará o nome de todas as variáveis já definidas dentro do código.
 > O RStudio também mantém uma lista de todas as variáveis já definidas no _environment panel_.
 
-## Environment panel
+### Environment panel
 Quaisquer objetos que criamos são mantidos no ambiente global. No RStudio podemos visualizar os objetos no _environment panel_, localizado no canto superior direito da tela. Ele nos oferece dois tipos de visualização: _List_ ou _Grid_. 
 A visão do tipo _List_ deve ser algo do tipo:
 ![List view](00_images/EnvironmentPanel_ListView.png "List view")
