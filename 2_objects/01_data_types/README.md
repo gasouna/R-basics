@@ -1,14 +1,14 @@
 # índice
 * [Tipos de dados](#tipos-de-dados "Tipos de dados")
-  * [Numerics](#numerics)
-    * [Doubles](#doubles)
-    * [Integers](#integers)
-  * [Characters](#characters)
-  * [Date](#date)
-  * [Logicals](#logicals)
-  * [Complex and Raw](#complex-and-raw)
-* [Mudando o tipo de dados](#mudando-o-tipo-de-dados)
-* [Exemplo](#exemplo)
+  * [Numerics](#numerics "Numerics")
+    * [Doubles](#doubles "Doubles")
+    * [Integers](#integers "Integers")
+  * [Characters](#characters "Characters")
+  * [Date](#date "Date")
+  * [Logicals](#logicals "Logicals")
+  * [Complex and Raw](#complex-and-raw "Complex and raw")
+* [Mudando o tipo de dados](#mudando-o-tipo-de-dados "Mudando o tipo de dados")
+* [Exemplo](#exemplo "Exemplo")
 # Tipos de dados
 Os tipos de dados (ou modos) definem como o R armazena nossos dados para que possamos utilizá-los futuramente. Vejamos a seguir os tipos de dados utilizados com maior frequência dentro da linguagem R.
 
