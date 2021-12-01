@@ -183,4 +183,5 @@ Para o histograma importamos o pacote ```ggplot2``` e utilizamos a função ```q
 >Para mais detalhes, consultar o conteúdo da seção [1_packages](https://github.com/gasouna/R-basics/tree/master/1_packages "1_packages").
 
 Exemplo do resultado de uma execução:
+
 ![Histograma de Resultados](../00_images/teamResults_Histogram.png "Histograma de Resultados")
