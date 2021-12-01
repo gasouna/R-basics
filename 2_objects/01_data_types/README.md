@@ -147,4 +147,40 @@ mixedNum <- as.numeric(mixed)
 mixedNum
 [1] NA 10 NA
 ```
+---
+### Exemplo
+O R possui um outro tipo de dados denominado _factor_. Eles parecem com caracteres, mas são armazenados como tal. Os _factors_ são muito importantes quando fazemos análises estatísticas em um _data set_. Vejamos um exemplo: Criaremos um vetor de caracteres para armazenar alguns nomes e depois alteraremos para o tipo _factor_ usando uma função:
+```R
+names <- c("Ben", "Alden", "Ben", "John", "Gabriel", "Max", "Matheus", "Evan")
 
+str(names)
+ chr [1:8] "Ben" "Alden" "Ben" "John" "Gabriel" "Max" "Matheus" "Evan"
+
+names <- as.factor(names)
+str(names)
+ Factor w/ 7 levels "Alden","Ben",..: 2 1 2 5 4 7 6 3
+```
+Podemos observar que os _factors_ são caracteres que parecem ser armazenados como um código inteiro onde cada inteiro representa uma string. Por exemplo, o vetor ```names``` é do tipo _factor_ contendo 7 níveis únicos: "Ben", "Alden", "John", "Gabriel", "Max", "Matheus" e "Evan". Pela saída, o "Ben" é armazenado com o valor 2, "Alden" com o valor 1, "John" com o valor 5 e assim por diante. Portanto, cada nome foi associado a um inteiro que é armazenado internamente no R.
+Podemos usar a função ```levels``` para verificar o nome de cada nível:
+```R
+levels(names)
+[1] "Alden"   "Ben"     "Evan"    "Gabriel" "John"    "Matheus" "Max"
+```
+Ela retorna os nomes de acordo com a ordem do valor inteiro associado a eles, mas não retorna os números em si. Para verificar o mapeamento numérico podemos usar a função ```as.integer```:
+```R
+as.integer(names)
+[1] 2 1 2 5 4 7 6 3
+```
+A vantagem é que o R está armazenando os _factors_ como números internamente, mas geralmente não há a necessidade de convertê-los para inteiros.
+>Para obter maior controle sobre o mapeamento, use a função ```factor```.
+
+No exemplo de código dessa seção criaremos um histograma para verificar o número de vitórias, empates e derrotas de um time de futebol dentro do campeonato brasileiro. 
+Como o campeonato tem 38 rodadas, armazenaremos os resultados usando as pontuações associadas a vitórias (3 pontos), empates (1 ponto) e derrotas (0 pontos) em um vetor do tipo inteiro. Utilizaremos a função ```sample``` para gerar os resultados de maneira aleatória, combinando o parâmetro ```replace``` com uma distribuição de probabilidades de 20% para derrotas, 30% para empates e 50% para vitórias.
+>Para mais detalhes, consultar o conteúdo da seção [0_functions](https://github.com/gasouna/R-basics/tree/master/0_functions "0_functions").
+
+Em seguida utilizaremos a função ```factor``` para transformar esse vetor de pontuações (inteiro) em um _factor_, mapeando os valores de pontuação em 'V', 'D' e 'L' - representando vitórias, empates e derrotas, respectivamente.
+Para o histograma importamos o pacote ```ggplot2``` e utilizamos a função ```qplot```.
+>Para mais detalhes, consultar o conteúdo da seção [1_packages](https://github.com/gasouna/R-basics/tree/master/1_packages "1_packages").
+
+Exemplo do resultado de uma execução:
+![Histograma de Resultados](../00_images/teamResults_Histogram.png "Histograma de Resultados")
