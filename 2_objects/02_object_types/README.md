@@ -2,6 +2,8 @@
 * [Tipos de objetos (classes)](#tipos-de-objetos-(classes) 'Tipos de objetos (Classes)')
   * [Vetores](#vetores 'Vetores')
     * [Indexação](#indexação 'Indexação')
+  * [Matrizes](#matrizes 'Matrizes')
+    * [Indexação de matrizes](#indexação-de-matrizes 'Indexação Matrizes')
 # Tipos de objetos (classes)
 Ainda estamos considerando os objetos como 'caixas de sapatos' - uma coisa que pode armazenar coisas. Vimos que podemos armazenar diferentes tipos de elementos dentro das nossas caixas, mas indo mais a fundo as próprias caixas de sapato podem ter tipos diferentes já que temos caixas de sapato grandes, pequenas, de marcas diferentes, etc. O mesmo se aplica aos objetos no R. 
 Existem algumas 'classes' de objetos que são mais utilizadas para armazenar diferentes tipos de objetos:
@@ -108,3 +110,136 @@ shoebox['size'] <- 42
   size
   "42"
 ```
+
+## Matrizes
+Uma matriz é um tipo especial de vetor em duas dimensões que armazena apenas um único tipo de dado (**dimensão** é um outro exemplo de atributo). Podemos criar matrizes usando a função ```matrix```. Os argumentos dessa função podem ser listados usando a função ```args```:
+```R
+# Get the arguments for the function called matrix
+args(matrix)
+ function (data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL) 
+ NULL
+
+# Create a vector with numbers 1 to 6
+numbers <- 1:6
+numbers
+ [1] 1 2 3 4 5 6
+
+# Create a matrix
+myMatrix <- matrix(data=numbers, nrow=3, ncol=2)
+myMatrix
+      [,1] [,2]
+ [1,]    1    4
+ [2,]    2    5
+ [3,]    3    6
+```
+No exemplo acima, como não foi passado o argumento ```byrow``` o R usou o valor padrão (```FALSE```). Isso significa que a matriz será preenchida por coluna. Ou seja, é como se o R 'dobrasse' nosso vetor original de maneira a preencher todos os elementos da primeira coluna com e depois continuasse com os elementos restantes na segunda coluna.
+>Se utilizássemos um número de elementos maior que o vetor original o R preencheria os elementos restantes com repetições dos originais.
+```R
+myMatrix2 <- <- matrix(data=numbers, nrow=2, ncol=4)
+ Warning message:
+ In matrix(data = numbers, nrow = 2, ncol = 4) :
+   data length [6] is not a sub-multiple or multiple of the number of columns [4]
+
+myMatrix2
+      [,1] [,2] [,3] [,4]
+ [1,]    1    3    5    1
+ [2,]    2    4    6    2
+```
+Os símbolos ```[,1][,2][,3][,4]``` que vemos na primeira linha quando o R imprime nossa matriz são o cabeçalho, onde ```[,1]``` indica a coluna 1 e ```[,2]``` indica a coluna 2, e assim por diante. Nessa sintaxe, as linhas da matriz são representadas pelo primeiro inteiro, seguidas pela vírgula e o inteiro identificador da coluna.
+>Se um identificador não está especificado, mas a vírgula está presente interpretamos como 'toda a linha' ou 'toda a coluna'. Então, ```[,1]``` representa toda a coluna 1.
+
+Da mesma forma, os símbolos ```[1,]``` e ```[2,]``` a esquerda dos elementos são índices da nossa matriz, indicando qual é a linha que representam. A notação ```[1,]``` indica toda a coluna 1.
+
+Olhando para o _Environment Panel_ podemos verificar nossa primeira matriz ```myMatrix```. É possível ver o **tipo** do nosso objeto (_matrix_). Esta é a sua _**classe**_. Também podemos dizer que é uma matriz olhando para a coluna _Value_, onde temos a notação ```[1:3, 1:2]```. Isso indica que nossa matriz tem 3 linhas e 2 colunas. O _int_ que precede essa notação indica que nossa matriz armazena dados do tipo inteiro (seu _**modo**_):
+
+![Matriz](../00_images/ObjectTypes_Matrix.PNG "Matriz")
+
+Podemos usar as funções ```nrow``` e ```ncol``` para obter informações sobre a estrutura da nossa matriz:
+```R
+# Get the number of rows
+nrow(myMatrix)
+ [1] 3
+
+# Get the number of columns
+ncol(myMatrix)
+ [1] 2
+```
+
+A função ```dim``` retorna as duas informações de uma vez, com número de linhas primeiro, seguido do número de colunas:
+```R
+dim(myMatrix)
+ [1] 3 2
+```
+
+Se aplicarmos a função ```length``` a uma matriz, teremos a quantidade de elementos que ela armazena:
+```R
+length(myMatrix)
+[1] 6
+```
+Isso acontece porque as matrizes são, primordialmente, vetores (com atributo de dimensão). Como a função ```length``` é uma função aplicada a vetores, ela retorna a contagem de elementos da matriz.
+
+### Indexação de matrizes
+Assim como nos vetores, podemos usar os índices para extrair partes da informação armazenada nas matrizes:
+```R
+# Extract the element stored in row 3, column 2
+myMatrix[3,2]
+ [1] 6
+
+# Extract the element stored in row 1, column 1
+myMatrix[3,2]
+ [1] 1
+
+# Extract all rows but only column 2
+myMatrix[,2]
+ [1] 4 5 6
+
+# Extract all elements
+myMatrix[,]
+      [,1] [,2]
+ [1,]    1    4
+ [2,]    2    5
+ [3,]    3    6
+
+# Extract all elements (vector like - elements 1 to 6 indexes)
+myMatrix[1:6]
+ [1] 1 2 3 4 5 6
+```
+Podemos atribuir nomes às colunas usando o atributo ```dimnames```, da seguinte forma:
+```R
+myMatrix <- matrix(data = c(1,2,3,11,12,13),
+                   nrow = 2,
+                   ncol = 3,
+                   byrow = T,
+                   dimnames = list(rows = c("row1","row2"),
+                                   columns = c("C.1","C.2","C.3")))
+
+myMatryx
+       columns
+ rows   C.1 C.2 C.3
+   row1   1   2   3
+   row2  11  12  13
+```
+Neste exemplo, usamos a função ```matrix``` para criar uma matriz de 2 linhas e três colunas preenchida por linhas (número 1, 2 e 3 preenchem a primeira linha e os números 11, 12 e 13 preenchem a segunda). O atributo ```dimnames``` foi usado para nomear as linhas e colunas. Para isso, passamos os nomes através de uma _lista_ (tipo de objeto que pode armazenar outros objetos dentro dele).
+
+A partir disso, podemos usar os nomes das linhas e colunas para extrair elementos da matriz:
+```R
+# Extract the first row 
+myMatrix["row1",]
+ C.1 C.2 C.3 
+   1   2   3 
+
+# Extract the row 1 column 2
+myMatrix["row1","C.2"]
+ [1] 2
+```
+Podemos usar a função ```str``` para observar a estrutura criada para a matriz:
+```R
+str(myMatrix)
+  num [1:2, 1:3] 1 11 2 12 3 13
+  - attr(*, "dimnames")=List of 2
+   ..$ rows   : chr [1:2] "row1" "row2"
+   ..$ columns: chr [1:3] "C.1" "C.2" "C.3"
+```
+Pela saída vemos que o tipo de dados (_modo_) armazenados é numérico e os índices ```[1:2, 1:3]``` indicam as dimensões da matriz. Em seguida, o R nos mostra todos os elementos armazenados por ela.
+Também é possível visualizar o atributo chamado _**dimnames**_ que atribuímos para a matriz, que por sua vez é uma lista com dois elementos (_List of 2_). Nas linhas logo abaixo identificamos que estes elementos são dois vetores (notação ```[1:2]``` e ```[1:3]```) que armazenam dados do tipo caractere, nomeados como _rows_ e _columns_, respectivamente.
+>Cada parte da lista começa com o símbolo do cifrão ($).
