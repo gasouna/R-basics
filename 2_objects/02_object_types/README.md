@@ -4,6 +4,8 @@
     * [Indexação](#indexação 'Indexação')
   * [Matrizes](#matrizes 'Matrizes')
     * [Indexação de matrizes](#indexação-de-matrizes 'Indexação Matrizes')
+  * [Arrays](#arrays 'Arrays')
+    * [Indexação de arrays](#indexação-de-arrays 'Indexação de arrays')
 # Tipos de objetos (classes)
 Ainda estamos considerando os objetos como 'caixas de sapatos' - uma coisa que pode armazenar coisas. Vimos que podemos armazenar diferentes tipos de elementos dentro das nossas caixas, mas indo mais a fundo as próprias caixas de sapato podem ter tipos diferentes já que temos caixas de sapato grandes, pequenas, de marcas diferentes, etc. O mesmo se aplica aos objetos no R. 
 Existem algumas 'classes' de objetos que são mais utilizadas para armazenar diferentes tipos de objetos:
@@ -243,3 +245,115 @@ str(myMatrix)
 Pela saída vemos que o tipo de dados (_modo_) armazenados é numérico e os índices ```[1:2, 1:3]``` indicam as dimensões da matriz. Em seguida, o R nos mostra todos os elementos armazenados por ela.
 Também é possível visualizar o atributo chamado _**dimnames**_ que atribuímos para a matriz, que por sua vez é uma lista com dois elementos (_List of 2_). Nas linhas logo abaixo identificamos que estes elementos são dois vetores (notação ```[1:2]``` e ```[1:3]```) que armazenam dados do tipo caractere, nomeados como _rows_ e _columns_, respectivamente.
 >Cada parte da lista começa com o símbolo do cifrão ($).
+
+## Arrays
+Os _arrays_ são muito semelhantes às matrizes, com a diferença de suportarem mais de duas dimensões. Podemos construir um _array_ usando a função ```array```.
+Como exemplo, vamos criar um _array_ contendo o número de funcionários de uma empresa, com idade entre 20 e 30, de cada sexo, nos últimos 3 anos. Para isso, iremos criar um _array_ contendo somente zeros e depois preenchê-lo com números aleatórios usando a função ```sample```: 
+```R
+employees <- array(data = 0,
+                   dim = c(3,11,2),
+                   dimnames = list(year = 1:3, age = 20:30, sex = c('male','female')))
+
+employees
+  ,,sex = male
+
+      age
+  year 20 21 22 23 24 25 26 27 28 29 30
+     1  0  0  0  0  0  0  0  0  0  0  0
+     2  0  0  0  0  0  0  0  0  0  0  0
+     3  0  0  0  0  0  0  0  0  0  0  0
+
+  ,,sex = female
+
+      age
+  year 20 21 22 23 24 25 26 27 28 29 30
+     1  0  0  0  0  0  0  0  0  0  0  0
+     2  0  0  0  0  0  0  0  0  0  0  0
+     3  0  0  0  0  0  0  0  0  0  0  0
+```
+Ao observarmos nosso objeto no _Environment panel_ temos a seguinte situação:
+
+![Arrays](../00_images/ObjectTypes_Arrays.PNG 'Arrays')
+
+Como é possível observar na imagem, temos 66 elementos numéricos (```num```) armazenados em três dimensões (```[1:3, 1:11, 1:2]```) dentro do nosso objeto que é do tipo ```array```.
+>Assim como acontece com as matrizes, os _arrays_ são um tipo especial de vetores. Isso nos possibilita utilizar a função ```length``` para descobrir quantos elementos temos armazenados dentro dele.
+
+Agora, com a função ```sample``` iremos criar um vetor com os 66 elementos que serão armazenados em nosso objeto. Só para exemplificar utilizaremos amostras de 50 a 100. Na substituição utilizaremos a notação ```employees[,,]```, que indica que queremos atribuir os valores do nosso vetor em todas as dimensões do _array_.
+```R
+individuals <- sample(x = c(50:100), size = 66, replace = T)
+
+individuals
+ [1]  60  81  81  71  97  68  65  68  86  71  69  77  75  71 100  77  75  69  69  87
+ [21]  55  83  58  94  62  61  80  76  87  83  72  64 100 100  78  75  62  64  70  84
+ [41]  60  67  84  90  99 100  52  86  79  91  53  92  70  75  84  77  58  95  96  82
+ [61]  64  85  60  61  62  92
+
+employees <- individuals
+
+employees
+  ,,sex = male
+
+      age
+  year 20 21 22 23  24 25 26 27 28 29  30
+     1 60 71 65 71  75 77 69 83 62 76  72
+     2 81 97 68 69  71 75 87 58 61 87  64
+     3 81 68 86 77 100 69 55 94 80 83 100
+
+  ,,sex = female
+  
+      age
+  year  20 21 22 23  24 25 26 27 28 29 30
+     1 100 62 84 84 100 79 92 84 95 64 61
+     2  78 64 60 90  52 91 70 77 96 85 62
+     3  75 70 67 99  86 53 75 58 82 60 92
+```
+Ao usarmos a função ```str``` temos o seguinte resultado:
+```R
+str(employees)
+  num [1:3, 1:11, 1:2] 60 81 81 71 97 68 65 68 86  71 ...
+  - attr(*, "dimnames")=List of 3
+   ..$ year: chr [1:3] "1" "2" "3"
+   ..$ age : chr [1:11] "20" "21" "22" "23" ...
+   ..$ sex : chr [1:2] "male" "female"
+```
+Na primeira linha do resultado temos as dimensões do nosso _array_ e uma amostra dos elementos que estão armazenados. Temos a indicação que estes elementos são numéricos pela notação ```num``` e podemos ver que esse objeto possui o atributo ```dimnames``` formado por uma lista de 3 vetores: ```year```, ```age``` e ```sex```.
+
+### Indexação de arrays
+A sintaxe para extrair informações de um _array_ é bem semelhante a usada em vetores e matrizes, com a única diferença sendo a indicação de todas as dimensões:
+```R
+# Extract the male data for all years and all ages
+employees[,,sex='male']
+      age
+  year 20 21 22 23  24 25 26 27 28 29  30
+     1 60 71 65 71  75 77 69 83 62 76  72
+     2 81 97 68 69  71 75 87 58 61 87  64
+     3 81 68 86 77 100 69 55 94 80 83 100
+
+# Extract the year 2 information
+employees[year = '2',,]
+      sex
+  age  male female
+    20   81     78
+    21   97     64
+    22   68     60
+    23   69     90
+    24   71     52
+    25   75     91
+    26   87     70
+    27   58     77
+    28   61     96
+    29   87     85
+    30   64     62
+
+# Extract the information about the third index of age
+## The thrid index is '21' years old
+## Here the extraction is by position
+employees[,2,]
+      sex
+  year male female
+     1   71     62
+     2   97     64
+     3   68     70
+```
+
+>O R tem um outro tipo de objeto chamado _**table**_, que é um _array_ de valores inteiros. Objetos dessa classe podem ser criados através da função ```table```.
