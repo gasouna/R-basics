@@ -6,6 +6,8 @@
     * [Indexação de matrizes](#indexação-de-matrizes 'Indexação Matrizes')
   * [Arrays](#arrays 'Arrays')
     * [Indexação de arrays](#indexação-de-arrays 'Indexação de arrays')
+  * [Listas](#listas 'Listas')
+    * [Indexação de listas](#indexação-de-listas 'Indexação de listas')
 # Tipos de objetos (classes)
 Ainda estamos considerando os objetos como 'caixas de sapatos' - uma coisa que pode armazenar coisas. Vimos que podemos armazenar diferentes tipos de elementos dentro das nossas caixas, mas indo mais a fundo as próprias caixas de sapato podem ter tipos diferentes já que temos caixas de sapato grandes, pequenas, de marcas diferentes, etc. O mesmo se aplica aos objetos no R. 
 Existem algumas 'classes' de objetos que são mais utilizadas para armazenar diferentes tipos de objetos:
@@ -357,3 +359,80 @@ employees[,2,]
 ```
 
 >O R tem um outro tipo de objeto chamado _**table**_, que é um _array_ de valores inteiros. Objetos dessa classe podem ser criados através da função ```table```.
+
+## Listas
+Uma lista nada mais é do que uma coleção de diferentes objetos. Esses objetos, por sua vez, podem ser vetores, matrizes, arrays ou até mesmo outras listas.
+Podemos criar listas usando a função ```list```. Por exemplo, vamos criar uma lista contendo os objetos ```myVector```, ```myMatrix``` e ```today``` dos exemplos anteriores:
+```R
+myList <- list(myVector,today,myMatrix)
+
+myList
+  [[1]]
+  [1] 1 2 3 4 5
+  
+  [[2]]
+  [1] "Thu Dec 16 20:16:38 2021"
+  
+  [[3]]
+        columns
+  rows   C.1 C.2 C.3
+    row1   1   2   3
+    row2  11  12  13
+```
+Ao executar o comando acima, podemos observar o objeto myList no _Environment Panel_ da seguinte forma:
+
+![Listas](../00_images/ObjectTypes_List.PNG "Listas")
+
+Ao clicar no ícone de lupa destacado na imagem, o R nos abre a seguinte janela:
+
+![View da lista](../00_images/ObjectTypes_List_View.PNG)
+
+A notação ```[[]]``` (chaves duplas) indica que trata-se de uma lista. Como não numeramos as seções da nossa lista, cada um dos elementos é indicado pelo seu índice numérico. Ou seja, ```[[1]]``` representa o primeiro item, que é o vetor numérico. Os outros dois elementos são indicados pelos índices ```[[2]]``` e ```[[3]]```.
+
+### Indexação de listas
+Para extrair elementos da lista usamos a notação com as chaves duplas:
+```R
+myList[[1]]
+  [1] 1 2 3 4 5
+
+myList[[2]]
+  [1] "Thu Dec 16 20:16:38 2021"
+```
+Essa notação irá extrair o elemento da lista, retornando-o para a sua classe original:
+```R
+class(myList[[2]])
+  [1] "character"
+```
+>Se quisermos extrair o elemento como uma lista usamos chaves simples.
+
+Para recuperar informações de dentro dos elementos da lista primeiro apontamos com as chaves duplas qual elemento queremos e depois usamos a notação do objeto em questão para recuperar a informação:
+```R
+# Extract the second number from myVector
+myList[[1]][2]
+  [1] 2
+
+# Extract column C.1 from myMatrix
+myList[[3]][,'C.1']
+  row1 row2 
+     1   11 
+```
+Podemos também nomear os elementos da lista, o que nos permite utlizar a notação _$_, que é equivalente as chaves duplas:
+```R
+myList <- list("myVector"=myVector,"today"=today,"myMatrix"=myMatrix)
+
+str(myList)
+  List of 3
+   $ myVector: num [1:5] 1 2 3 4 5
+   $ today   : chr "Thu Dec 16 20:16:38 2021"
+   $ myMatrix: num [1:2, 1:3] 1 11 2 12 3 13
+    ..- attr(*, "dimnames")=List of 2
+    .. ..$ rows   : chr [1:2] "row1" "row2"
+    .. ..$ columns: chr [1:3] "C.1" "C.2" "C.3"
+
+myList$myVector
+  [1] 1 2 3 4 5
+
+myList$myMatrix[,'C.1']
+  row1 row2 
+     1   11 
+```
