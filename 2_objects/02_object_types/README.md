@@ -11,6 +11,7 @@
   * [Data frames](#data-frames 'Data frames')
   * [Mudando a classe de um objeto](#mudando-a-classe-de-um-objeto 'Mudando a classe de um objeto')
   * [Objetos S3 x Objetos S4](#objetos-s3-x-objetos-s4 'Objetos S3 x Objetos S4')
+  * [Atributos](#atributos 'Atributos')
 # Tipos de objetos (classes)
 Ainda estamos considerando os objetos como 'caixas de sapatos' - uma coisa que pode armazenar coisas. Vimos que podemos armazenar diferentes tipos de elementos dentro das nossas caixas, mas indo mais a fundo as próprias caixas de sapato podem ter tipos diferentes já que temos caixas de sapato grandes, pequenas, de marcas diferentes, etc. O mesmo se aplica aos objetos no R. 
 Existem algumas 'classes' de objetos que são mais utilizadas para armazenar diferentes tipos de objetos:
@@ -539,4 +540,56 @@ Quando as informações de coluna e nome não são passadas para a função, o R
 ## Objetos S3 x Objetos S4
 Os objetos discutidos anteriormente nesse documento são do tipo S3. Esses objetos são mais flexíveis a respeito das funções que operam sobre eles. Por exemplo, a função ```print``` é uma função genérica que primeiro procura a classe do objeto a ser impresso e depois chama uma função apropriada para isso. Com objetos S3 podemos utilizar funções genéricas e o R irá executar a função apropriada.
 Os objetos do tipo S4 são mais próximos de listas. No entanto eles são inflexíveis e requerem funções próprias para operá-los.
+
+## Atributos
+Os objetos tem atributos no R, que podem ser listados usando a função ```str```. Nas seções anteriores deste documento criamos alguns objetos com o atributo ```dimnames```, porém também podemos adicionar quantos atributos quisermos aos objetos.
+Os atributos são armazenados em listas de chave-valor, podendo ser obtidos usando a função ```attributes``` ou definidos usando ```attributes <-```. Além disso, atributos podem ser recuperados individualmente usando ```attr``` e definidos usando ```attr <-```:
+```R
+employees <- array(data = 0,
+                   dim = c(3,11,2),
+                   dimnames = list(year = 1:3, age = 20:30, sex = c('male','female')))
+# Obtaining all attributes
+attributes(employees)
+  $dim
+  [1]  3 11  2
+  
+  $dimnames
+  $dimnames$year
+  [1] "1" "2" "3"
+  
+  $dimnames$age
+   [1] "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30"
+
+  $dimnames$sex
+  [1] "male"   "female"
+
+# Obtaining attribute dimnames individually
+attr(employees,which = 'dimnames')
+  $year
+  [1] "1" "2" "3"
+  
+  $age
+   [1] "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30"
+
+  $sex
+  [1] "male"   "female"
+```
+
+As mesmas funções podem ser utilizadas para criar novos atributos:
+```R
+attr(employees,which = 'Comment') <- 'This is an array created in object types studies'
+
+attr(employees,which = 'Created.by') <- 'Gabriel Nascimento'
+
+str(employees)
+   num [1:3, 1:11, 1:2] 0 0 0 0 0 0 0 0 0 0 ...
+   - attr(*, "dimnames")=List of 3
+    ..$ year: chr [1:3] "1" "2" "3"
+    ..$ age : chr [1:11] "20" "21" "22" "23" ...
+    ..$ sex : chr [1:2] "male" "female"
+   - attr(*, "Comment")= chr "This is an array created in object types studies"
+   - attr(*, "Created.by")= chr "Gabriel Nascimento"
+```
+Isso é muito útil, principalmente para objetos grandes que precisam de metadados. 
+>Para muitas classes de objeto os atributos não são mostrados quando chamamos o objeto. Para isso é necessário usar a função ```attributes```. No entanto, para objetos do tipo _array_ os atributos são mostrados sempre, basta chamar o objeto.
 
