@@ -10,6 +10,7 @@
     * [Indexação de listas](#indexação-de-listas 'Indexação de listas')
   * [Data frames](#data-frames 'Data frames')
   * [Mudando a classe de um objeto](#mudando-a-classe-de-um-objeto 'Mudando a classe de um objeto')
+  * [Objetos S3 x Objetos S4](#objetos-s3-x-objetos-s4 'Objetos S3 x Objetos S4')
 # Tipos de objetos (classes)
 Ainda estamos considerando os objetos como 'caixas de sapatos' - uma coisa que pode armazenar coisas. Vimos que podemos armazenar diferentes tipos de elementos dentro das nossas caixas, mas indo mais a fundo as próprias caixas de sapato podem ter tipos diferentes já que temos caixas de sapato grandes, pequenas, de marcas diferentes, etc. O mesmo se aplica aos objetos no R. 
 Existem algumas 'classes' de objetos que são mais utilizadas para armazenar diferentes tipos de objetos:
@@ -534,3 +535,8 @@ str(myDF)
 ```
 Quando as informações de coluna e nome não são passadas para a função, o R irá nomear cada linha de um novo _data frame_ com caracteres numéricos (1,2,3,4,etc) e cada coluna como V1, V2, V3, etc.
 >Existem casos onde objetos não podem ser convertidos em outra classe.
+
+## Objetos S3 x Objetos S4
+Os objetos discutidos anteriormente nesse documento são do tipo S3. Esses objetos são mais flexíveis a respeito das funções que operam sobre eles. Por exemplo, a função ```print``` é uma função genérica que primeiro procura a classe do objeto a ser impresso e depois chama uma função apropriada para isso. Com objetos S3 podemos utilizar funções genéricas e o R irá executar a função apropriada.
+Os objetos do tipo S4 são mais próximos de listas. No entanto eles são inflexíveis e requerem funções próprias para operá-los.
+
