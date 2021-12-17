@@ -8,6 +8,8 @@
     * [Indexação de arrays](#indexação-de-arrays 'Indexação de arrays')
   * [Listas](#listas 'Listas')
     * [Indexação de listas](#indexação-de-listas 'Indexação de listas')
+  * [Data frames](#data-frames 'Data frames')
+  * [Mudando a classe de um objeto](#mudando-a-classe-de-um-objeto 'Mudando a classe de um objeto')
 # Tipos de objetos (classes)
 Ainda estamos considerando os objetos como 'caixas de sapatos' - uma coisa que pode armazenar coisas. Vimos que podemos armazenar diferentes tipos de elementos dentro das nossas caixas, mas indo mais a fundo as próprias caixas de sapato podem ter tipos diferentes já que temos caixas de sapato grandes, pequenas, de marcas diferentes, etc. O mesmo se aplica aos objetos no R. 
 Existem algumas 'classes' de objetos que são mais utilizadas para armazenar diferentes tipos de objetos:
@@ -459,7 +461,9 @@ str(myDataFrame)
    $ fiveBooleans: logi  TRUE FALSE TRUE FALSE TRUE
    $ fiveRandoms : num  0.3329 0.6518 0.2061 0.3477 0.0119
 ```
-Ao criarmos nosso _data frame_ podemos visuaizá-lo no _Environment panel_:
+> Mesmo que seja uma lista de vetores, o _data frame_ pode armazenar vetores de diferentes tipos dentro dele.
+
+Ao criarmos nosso _data frame_ podemos visualizá-lo no _Environment panel_:
 
 ![DataFrame](../00_images/ObjectTypes_DataFrame.PNG 'Data frame')
 
@@ -486,3 +490,47 @@ myDataFrame[[2]][4]
   [1] FALSE
 ```
 
+## Mudando a classe de um objeto
+O R dispõe de uma série de funções de coerção, que geralmente são utilizadas para converter um objeto para uma nova classe. Seguem algumas dessas funções:
+- as.data.frame: converte um objeto em _data frame_
+- as.list: converte um objeto em lista
+- as.matrix: converte um objeto em matriz
+- as.vector: converte um objeto em vetor
+- as.array: converte um objeto em _array_
+
+Por exemplo, vamos criar um _data frame_ a partir de uma matriz:
+```R
+myVector <- runif(n=6)
+myMatrix <- matrix(data = myVector,
+                   nrow = 3,
+                   ncol = 2,
+                   dimnames = list(rows = c(1,2,3), columns = c('Column 1','Column 2')))
+
+myMatrix
+      columns
+  rows  Column 1  Column 2
+     1 0.2790906 0.2455822
+     2 0.4598776 0.9439586
+     3 0.5117308 0.2673521
+
+str(myMatrix)
+   num [1:3, 1:2] 0.279 0.46 0.512 0.246 0.944 ...
+   - attr(*, "dimnames")=List of 2
+    ..$ rows   : chr [1:3] "1" "2" "3"
+    ..$ columns: chr [1:2] "Column 1" "Column 2"
+
+myDF <- as.data.frame(myMatrix)
+
+myDF
+     Column 1  Column 2
+  1 0.2790906 0.2455822
+  2 0.4598776 0.9439586
+  3 0.5117308 0.2673521
+
+str(myDF)
+  'data.frame':	3 obs. of  2 variables:
+   $ Column 1: num  0.279 0.46 0.512
+   $ Column 2: num  0.246 0.944 0.267
+```
+Quando as informações de coluna e nome não são passadas para a função, o R irá nomear cada linha de um novo _data frame_ com caracteres numéricos (1,2,3,4,etc) e cada coluna como V1, V2, V3, etc.
+>Existem casos onde objetos não podem ser convertidos em outra classe.
