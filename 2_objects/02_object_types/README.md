@@ -1,7 +1,7 @@
 # Índice
 * [Tipos de objetos (classes)](#tipos-de-objetos-(classes) 'Tipos de objetos (Classes)')
   * [Vetores](#vetores 'Vetores')
-    * [Indexação](#indexação 'Indexação')
+    * [Indexação de vetores](#indexação-de-vetores 'Indexação-de-vetores')
   * [Matrizes](#matrizes 'Matrizes')
     * [Indexação de matrizes](#indexação-de-matrizes 'Indexação Matrizes')
   * [Arrays](#arrays 'Arrays')
@@ -64,7 +64,7 @@ length(five)
 ```
 > A função ```length``` retorna o tamanho de um vetor.
 
-### Indexação
+### Indexação de vetores
 Vamos criar um vetor de exemplo usando a função ```c```:
 ```R
 box <- c("coin","keys","wallet","phone","AirPods","Alexa")
@@ -436,3 +436,53 @@ myList$myMatrix[,'C.1']
   row1 row2 
      1   11 
 ```
+
+## Data frames
+Um _data frame_ é uma lista que contém vetores, sendo todos eles de um mesmo tamanho. A maior parte das bases de dados são armazenadas como _data frames_ no R.
+Podemos usar a função ```data.frame``` para criar nossos _data frames_. Por exemplo, vamos combinar 3 vetores diferentes:
+```R
+fiveIntegers <- c(1L,2L,3L,4L,5L)
+fiveBooleans <- c(TRUE,FALSE,TRUE,FALSE,TRUE)
+fiveRandoms <- runif(n=5)
+
+myDataFrame
+    fiveIntegers fiveBooleans fiveRandoms
+  1            1         TRUE  0.33293151
+  2            2        FALSE  0.65182483
+  3            3         TRUE  0.20610281
+  4            4        FALSE  0.34774649
+  5            5         TRUE  0.01188238
+
+str(myDataFrame)
+  'data.frame':	5 obs. of  3 variables:
+   $ fiveIntegers: int  1 2 3 4 5
+   $ fiveBooleans: logi  TRUE FALSE TRUE FALSE TRUE
+   $ fiveRandoms : num  0.3329 0.6518 0.2061 0.3477 0.0119
+```
+Ao criarmos nosso _data frame_ podemos visuaizá-lo no _Environment panel_:
+
+![DataFrame](../00_images/ObjectTypes_DataFrame.PNG 'Data frame')
+
+Podemos visualizar o conteúdo do _data frame_ clicando no ícone de tabela destacado na imagem anterior:
+
+![Preview DataFrame](../00_images/ObjectTypes_DataFrame_View.PNG 'Data frame preview')
+
+Podemos usar as funções ```rownames``` e ```colnames``` para extrair os nomes das linhas e colunas do nosso _data frame_, respectivamente:
+```R
+colnames(myDataFrame)
+  [1] "fiveIntegers" "fiveBooleans" "fiveRandoms"
+
+rownames(myDataFrame)
+  [1] "1" "2" "3" "4" "5"
+```
+Para extrair informações do _data frame_ podemos utilizar a mesma notação das listas. Por exemplo:
+```R
+# Extract the third element from the fiveIntegers vector
+myDataFrame$fiveIntegers[3]
+  [1] 3
+
+# Extract the fourth element from the fiveBoolens vector
+myDataFrame[[2]][4]
+  [1] FALSE
+```
+
